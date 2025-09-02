@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+    {% if is_correct %}
+        <h2>✅ Correct! Well done!</h2>
+    {% else %}
+        <h2>❌ Oops! The correct answer was: <strong>{{ lesson.answer }}</strong></h2>
+    {% endif %}
+
+    <a href="/">← Try Another Lesson</a>
+</body>
+</html>

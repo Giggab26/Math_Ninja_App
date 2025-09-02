@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NumberNinja</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #4c00ff;
+      text-shadow: 0 0 10px rgba(0, 255, 195, 0.6);
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .question-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 60%;
+      max-width: 300px;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00ffc3;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .logo {
+  font-size: 2.5em;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(19, 47, 185, 0.6);
+  margin-bottom: 30px;
+}
+
+    button:hover {
+      background-color: #00c7a3;
+    }
+
+    .feedback {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .correct {
+      color: #00ff73;
+    }
+
+    .incorrect {
+      color: #ff4d4d;
+    }
+
+    a {
+      color: #00ffc3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+    <h1 class="logo">🥷 Number<span style="color:#00ffc3;">Ninja</span></h1>
+  <h1>🥷 Welcome to NumberNinja!</h1>
+
+  <div class="question-box">
+    {% if question %}
+      <p><strong>{{ question }}</strong></p>
+    {% else %}
+      <p>Loading question...</p>
+    {% endif %}
+
+    {% if is_correct is defined %}
+      <div class="feedback {% if is_correct %}correct{% else %}incorrect{% endif %}">
+        {% if is_correct %}
+          ✅ Correct!
+        {% else %}
+          ❌ Incorrect. The correct answer was: {{ session['answer'] }}
+        {% endif %}
+      </div>
+      <br />
+      <a href="{{ url_for('index') }}">🎯 Try another question</a>
+    {% else %}
+      <form method="POST" action="{{ url_for('submit') }}">
+        <input type="text" name="answer" placeholder="Your answer" required />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    {% endif %}
+  </div>
+</body>
+</html>

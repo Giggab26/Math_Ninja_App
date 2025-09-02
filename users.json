@@ -1,0 +1,26 @@
+{
+    "joshua": {
+        "password": "scrypt:32768:8:1$j6NNiqKXPjRYVQji$2806d0d5c3cf41887bd7ee483ef488e889e3c2a10b7e526043087ba5ef983943d217f952d1ad3babae7002581b727066827540423069d9c9b6843baaa854f875",
+        "progress": {
+            "correct": 1,
+            "attempts": 4
+        },
+        "streak": 0,
+        "badges": [],
+        "last_login": null
+    },
+    "jesse": {
+        "password": "scrypt:32768:8:1$QR9YXIHWM5BMiUNX$22cf3a913138fe2dfd63599ec1b9bdeb109a3ccc36984818c5756309c3366b1dffc7cea86114a73e1544a7abb89ad9f4546cee473adceb7f2735a5021ca8e227",
+        "progress": {
+            "correct": 0,
+            "attempts": 0,
+            "grade1": {
+                "correct": 2,
+                "attempts": 1
+            }
+        },
+        "streak": 2,
+        "badges": [],
+        "last_login": "2025-09-03"
+    }
+}

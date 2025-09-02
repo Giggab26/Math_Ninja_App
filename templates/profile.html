@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ username }} - Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+  }
+  header {
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px #e94560aa;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+  }
+  nav a {
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    transition: 0.3s;
+  }
+  nav a:hover {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    box-shadow: 0 6px 15px rgba(0,123,255,0.5);
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+  }
+  .card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 0.8s ease;
+  }
+  .card h3 {
+    margin-bottom: 15px;
+  }
+  @keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+  }
+  @media(max-width:700px){
+    .container {padding: 20px;}
+    .card {width: 100%;}
+  }
+</style>
+</head>
+<body>
+<header>👤 Profile: {{ username }}</header>
+<nav>
+  <a href="{{ url_for('dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('quiz') }}">Start Quiz</a>
+  <a href="{{ url_for('show_progress') }}">Progress</a>
+  <a href="{{ url_for('faq') }}">FAQ</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h3>📊 Stats</h3>
+    <p>Score: {{ score }}%</p>
+    <p>Streak: 🔥 {{ streak }} days</p>
+    <p>Badges:</p>
+    <ul>
+      {% for badge in badges %}
+        <li>🏅 {{ badge }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+</body>
+</html>

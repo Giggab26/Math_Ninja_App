@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Grade</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1e3c72;
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+  }
+  h2 { margin-bottom: 30px; }
+  form button {
+    display:block;
+    margin: 10px auto;
+    padding: 15px 25px;
+    font-size: 18px;
+    background: #00c6ff;
+    color:#000;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition: 0.3s;
+  }
+  form button:hover { background: #0072ff; color:#fff; }
+  a { color: #fff; display:block; margin-top: 20px; text-decoration:none; }
+</style>
+</head>
+<body>
+<h2>Choose Your Grade Level</h2>
+<form method="POST">
+  <button name="grade" value="grade1">Grade 1</button>
+  <button name="grade" value="grade2">Grade 2</button>
+  <button name="grade" value="grade3">Grade 3</button>
+  <button name="grade" value="grade4">Grade 4</button>
+  <button name="grade" value="grade5">Grade 5</button>
+  <button name="grade" value="grade6">Grade 6</button>
+  <button name="grade" value="grade7">Grade 7</button>
+  <button name="grade" value="grade8">Grade 8</button>
+  <button name="grade" value="grade9">Grade 9</button>
+  <button name="grade" value="calculus">Calculus</button>
+  <button name="grade" value="advanced">Advanced</button>
+</form>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

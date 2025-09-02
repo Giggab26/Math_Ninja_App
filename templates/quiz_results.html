@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Results</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1e3c72;
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+  }
+  h2 { margin-bottom: 20px; font-size: 2rem; }
+  p { font-size: 18px; margin-bottom: 20px; }
+  a {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #00c6ff;
+    color: #000;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  a:hover { background: #0072ff; color: #fff; }
+</style>
+</head>
+<body>
+
+<h2>🎉 Quiz Completed!</h2>
+
+<p>Grade: {{ grade }}</p>
+<p>Total Correct: {{ correct }} / {{ total }}</p>
+<p>Score: {{ score }}%</p>
+
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Progress</title>
+<style>
+  body { font-family: Arial; text-align:center; padding:40px; background:#222; color:#fff; }
+  .progress-bar { background: rgba(255,255,255,0.2); border-radius:12px; height:20px; overflow:hidden; margin:10px auto; width:200px; }
+  .progress-fill { height:100%; width: {{ score }}%; background:limegreen; transition:width 0.5s; }
+</style>
+</head>
+<body>
+<h2>{{ username }}'s Progress</h2>
+<p>Correct: {{ progress.correct }} | Attempts: {{ progress.attempts }} | Score: {{ score }}%</p>
+<div class="progress-bar">
+  <div class="progress-fill"></div>
+</div>
+<p><a href="{{ url_for('dashboard') }}" style="color:#00c6ff;">Back to Dashboard</a></p>
+</body>
+</html>

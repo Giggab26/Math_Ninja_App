@@ -1,133 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>NumberNinja - Quiz</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-        body {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-        .quiz-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px 35px;
-            border-radius: 20px;
-            width: 420px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            backdrop-filter: blur(10px);
-            animation: slideIn 0.8s ease forwards;
-        }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        h2 {
-            font-weight: 700;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 8px #fff8, 0 0 15px #e94560aa;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 14px 18px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: none;
-            font-size: 1rem;
-            outline: none;
-            transition: box-shadow 0.3s ease;
-            box-shadow: 0 0 6px #fff4 inset;
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
-        input[type="text"]:focus {
-            box-shadow: 0 0 10px #e94560;
-            background: rgba(255, 255, 255, 0.3);
-        }
-        input[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #fff;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            box-shadow: 0 8px 15px rgba(255, 75, 43, 0.3);
-        }
-        input[type="submit"]:hover {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            box-shadow: 0 10px 20px rgba(255, 75, 43, 0.5);
-        }
-        .result {
-            margin-top: 20px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-shadow: 0 0 8px #0009;
-            user-select: none;
-            animation: fadeIn 0.6s ease forwards;
-        }
-        .correct {
-            color: #3efc89;
-            text-shadow: 0 0 12px #3efc89, 0 0 20px #22d97b;
-        }
-        .incorrect {
-            color: #ff6b6b;
-            text-shadow: 0 0 12px #ff6b6b, 0 0 20px #ff3f3f;
-        }
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-        a {
-            margin-top: 30px;
-            display: inline-block;
-            font-size: 0.9rem;
-            color: #f8f9facc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            user-select: none;
-        }
-        a:hover {
-            color: #e94560;
-            text-shadow: 0 0 8px #e94560;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>NumberNinja - Dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+    }
+    header {
+      background: rgba(0,0,0,0.3);
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #e94560aa;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+    nav a {
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: linear-gradient(45deg, #ff4b2b, #ff416c);
+      box-shadow: 0 6px 15px rgba(255,75,43,0.5);
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 40px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 25px;
+      width: 300px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: fadeIn 0.8s ease;
+    }
+    .card h3 {
+      margin-bottom: 15px;
+    }
+    .progress-bar {
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      height: 20px;
+      width: 100%;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: {{ progress|default(40) }}%;
+      background: linear-gradient(90deg, #3efc89, #22d97b);
+      transition: width 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+    /* Mobile friendly */
+    @media(max-width:700px){
+      nav {flex-wrap: wrap;}
+      .container {padding: 20px;}
+      .card {width: 100%;}
+    }
+  </style>
 </head>
 <body>
-    <div class="quiz-box">
-        <h2>{{ question }}</h2>
-        <form method="post" action="/submit" autocomplete="off">
-            <input type="text" name="answer" placeholder="Type your answer here..." required autofocus />
-            <input type="submit" value="Check Answer" />
-        </form>
+  <header>🥷 NumberNinja Dashboard</header>
+  <nav>
+    <a href="/quiz">Start Quiz</a>
+    <a href="/profile">Profile</a>
+    <a href="/progress">Progress</a>
+    <a href="/faq">FAQ</a>
+    <a href="/logout">Logout</a>
+  </nav>
 
-        {% if is_correct is not none %}
-            <p class="result {{ 'correct' if is_correct else 'incorrect' }}">
-                {{ '🎉 Correct! You’re a NumberNinja!' if is_correct else '❌ Nope, try again!' }}
-            </p>
-        {% endif %}
-
-        <a href="/logout">Logout</a>
+  <div class="container">
+    <!-- Profile Card -->
+    <div class="card">
+      <h3>👤 Welcome, {{ username }}</h3>
+      <p>Streak: 🔥 {{ streak }} days</p>
+      <p>Badges: 🏅 {{ badges|length }}</p>
     </div>
+
+    <!-- Progress Card -->
+    <div class="card">
+      <h3>📊 Your Progress</h3>
+      <p>Score: {{ score }}/100</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- FAQ Card -->
+    <div class="card">
+      <h3>❓ FAQ</h3>
+      <p><b>Q:</b> How do I earn badges?</p>
+      <p><b>A:</b> Score high in quizzes & maintain streaks.</p>
+      <p><b>Q:</b> Can I reset progress?</p>
+      <p><b>A:</b> Yes, from your profile settings.</p>
+    </div>
+  </div>
 </body>
 </html>

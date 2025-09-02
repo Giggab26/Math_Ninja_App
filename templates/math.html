@@ -1,80 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>NumberNinja - Quiz</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
         body {
-            background-color: #0f3460;
-            font-family: 'Segoe UI', sans-serif;
-            color: #ffffff;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
+            overflow: hidden;
         }
         .quiz-box {
-            background-color: #16213e;
-            padding: 30px;
-            border-radius: 10px;
-            width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 35px;
+            border-radius: 20px;
+            width: 420px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             text-align: center;
-            box-shadow: 0 0 25px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.8s ease forwards;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px #fff8, 0 0 15px #e94560aa;
         }
         input[type="text"] {
             width: 100%;
-            padding: 12px;
-            margin: 15px 0;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            border-radius: 10px;
             border: none;
-            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 0 6px #fff4 inset;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+        input[type="text"]:focus {
+            box-shadow: 0 0 10px #e94560;
+            background: rgba(255, 255, 255, 0.3);
         }
         input[type="submit"] {
-            background-color: #e94560;
-            border: none;
-            padding: 12px;
             width: 100%;
-            color: white;
-            border-radius: 5px;
-            font-weight: bold;
+            padding: 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 12px;
             cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 8px 15px rgba(255, 75, 43, 0.3);
         }
         input[type="submit"]:hover {
-            background-color: #ff2e63;
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            box-shadow: 0 10px 20px rgba(255, 75, 43, 0.5);
         }
         .result {
-            margin-top: 15px;
-            font-weight: bold;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-shadow: 0 0 8px #0009;
+            user-select: none;
+            animation: fadeIn 0.6s ease forwards;
         }
         .correct {
-            color: #28df99;
+            color: #3efc89;
+            text-shadow: 0 0 12px #3efc89, 0 0 20px #22d97b;
         }
         .incorrect {
             color: #ff6b6b;
+            text-shadow: 0 0 12px #ff6b6b, 0 0 20px #ff3f3f;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
         }
         a {
-            color: #f8f9fa;
-            font-size: 14px;
-            display: block;
-            margin-top: 20px;
-            text-decoration: underline;
+            margin-top: 30px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #f8f9facc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+        a:hover {
+            color: #e94560;
+            text-shadow: 0 0 8px #e94560;
         }
     </style>
 </head>
 <body>
     <div class="quiz-box">
         <h2>{{ question }}</h2>
-        <form method="post" action="/submit">
-            <input type="text" name="answer" placeholder="Your answer" required>
-            <input type="submit" value="Submit Answer">
+        <form method="post" action="/submit" autocomplete="off">
+            <input type="text" name="answer" placeholder="Type your answer here..." required autofocus />
+            <input type="submit" value="Check Answer" />
         </form>
 
         {% if is_correct is not none %}
             <p class="result {{ 'correct' if is_correct else 'incorrect' }}">
-                {{ '✅ Correct!' if is_correct else '❌ Incorrect! Try again.' }}
+                {{ '🎉 Correct! You’re a NumberNinja!' if is_correct else '❌ Nope, try again!' }}
             </p>
         {% endif %}
 
-        <a href="/logout">Log Out</a>
+        <a href="/logout">Logout</a>
     </div>
 </body>
 </html>
